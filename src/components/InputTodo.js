@@ -2,12 +2,12 @@ import React, {useState} from "react";
 
 const InputTodo = () => {
 
-    const [desc, setDesc] = useState("")
+    const [description, setDescription] = useState("");
 
     const onSubmitForm = async (e) => {
         e.preventDefault()
         try {
-            const body = {desc};
+            const body = {description};
             const response = await fetch("http://localhost:5001/todos",
                { 
                     method: "POST",
@@ -16,8 +16,8 @@ const InputTodo = () => {
                 }
             );
 
-            console.log(response)
-            response.json()
+            window.location = ("/")
+            
         } catch (error) {
             console.error(error.message)
         }
@@ -25,9 +25,12 @@ const InputTodo = () => {
     return <>
     <h1 className="text-center mt-5">P.E.R.N. Todo List</h1>
     <form className="d-flex mt-5" onSubmit= {onSubmitForm}>
-        <input type="text" className="form-control" value = {desc} onChange = {e => {
-            setDesc(e.target.value)
-        }}/>
+        <input 
+            type="text" 
+            className="form-control" 
+            value = {description} 
+            onChange = {e => setDescription(e.target.value)}
+        />
         <button className="btn btn-success">Add</button>
     </form>
     </>
